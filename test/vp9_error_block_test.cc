@@ -14,13 +14,14 @@
 
 #include "third_party/googletest/src/include/gtest/gtest.h"
 
+#include "./vpx_config.h"
+#include "./vp9_rtcd.h"
 #include "test/acm_random.h"
 #include "test/clear_system_state.h"
 #include "test/register_state_check.h"
 #include "test/util.h"
-#include "./vpx_config.h"
-#include "./vp9_rtcd.h"
 #include "vp9/common/vp9_entropy.h"
+#include "vpx/vpx_codec.h"
 #include "vpx/vpx_integer.h"
 
 using libvpx_test::ACMRandom;
@@ -57,8 +58,8 @@ class ErrorBlockTest
 
 TEST_P(ErrorBlockTest, OperationCheck) {
   ACMRandom rnd(ACMRandom::DeterministicSeed());
-  DECLARE_ALIGNED_ARRAY(16, tran_low_t, coeff,   4096);
-  DECLARE_ALIGNED_ARRAY(16, tran_low_t, dqcoeff, 4096);
+  DECLARE_ALIGNED(16, tran_low_t, coeff[4096]);
+  DECLARE_ALIGNED(16, tran_low_t, dqcoeff[4096]);
   int err_count_total = 0;
   int first_failure = -1;
   intptr_t block_size;
@@ -90,8 +91,8 @@ TEST_P(ErrorBlockTest, OperationCheck) {
 
 TEST_P(ErrorBlockTest, ExtremeValues) {
   ACMRandom rnd(ACMRandom::DeterministicSeed());
-  DECLARE_ALIGNED_ARRAY(16, tran_low_t, coeff,   4096);
-  DECLARE_ALIGNED_ARRAY(16, tran_low_t, dqcoeff, 4096);
+  DECLARE_ALIGNED(16, tran_low_t, coeff[4096]);
+  DECLARE_ALIGNED(16, tran_low_t, dqcoeff[4096]);
   int err_count_total = 0;
   int first_failure = -1;
   intptr_t block_size;

@@ -46,6 +46,14 @@ extern vpx_codec_iface_t  vpx_codec_vp9_dx_algo;
 extern vpx_codec_iface_t *vpx_codec_vp9_dx(void);
 /*!@} - end algorithm interface member group*/
 
+/*!\name Algorithm interface for VP10
+ *
+ * This interface provides the capability to decode VP10 streams.
+ * @{
+ */
+extern vpx_codec_iface_t  vpx_codec_vp10_dx_algo;
+extern vpx_codec_iface_t *vpx_codec_vp10_dx(void);
+/*!@} - end algorithm interface member group*/
 
 /*!\enum vp8_dec_control_id
  * \brief VP8 decoder control functions
@@ -105,6 +113,13 @@ enum vp8_dec_control_id {
    *              release, this test-only control shall be removed.
    */
   VP9_INVERT_TILE_DECODE_ORDER,
+
+  /** control function to set the skip loop filter flag. Valid values are
+   * integers. The decoder will skip the loop filter when its value is set to
+   * nonzero. If the loop filter is skipped the decoder may accumulate decode
+   * artifacts. The default value is 0.
+   */
+  VP9_SET_SKIP_LOOP_FILTER,
 
   VP8_DECODER_CTRL_ID_MAX
 };
